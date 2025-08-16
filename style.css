@@ -1,0 +1,455 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff;
+  color: #2f2f2f;
+}
+
+.navbar {
+  background-color: #009688;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+}
+
+
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+  color:white;
+ }
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffffff;
+   font-family: 'Poppins', sans-serif; 
+} 
+
+ .logo .dot {
+  color: #ff5e57; 
+ } 
+
+
+ .discount-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 50px;
+  background-color: #ffffff;
+  color: #2f2f2f;
+  gap: 40px;
+  flex-wrap: wrap;
+  background-color: #f0fafa;
+}
+
+.discount-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.discount-text h2 {
+  font-size: 60px;
+  color: #009688;
+  margin-bottom: 20px;
+}
+
+.discount-text p {
+  font-size: 30px;
+  margin-bottom: 25px;
+  line-height: 1.5;
+} 
+
+.shop-btn {
+  padding: 12px 24px;
+  background-color: #009688;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.shop-btn:hover {
+  background-color: #00796b;
+}
+
+.discount-image {
+  flex: 1;
+  text-align: right;
+  min-width: 400px;
+}
+
+.discount-image img {
+
+  border-radius: 8px;
+  width: 100%;     /* Fill the entire column */
+  height: auto;
+  object-fit: cover;
+}
+
+
+/* General navbar link styles */
+.navbar ul li a {
+  position: relative;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 15px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Underline effect */
+.navbar ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 5px;
+  width: 0%;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+/* Hover effect */
+.navbar ul li a:hover {
+  transform: scale(1.05);
+}
+
+/* Animate underline on hover */
+.navbar ul li a:hover::after {
+  width: 100%;
+}
+
+/* NEW: Keep underline on active page */
+.navbar ul li a.active::after {
+  width: 100%;
+}
+
+
+/* Categories Section Styling */
+.categories-section {
+  padding: 50px 20px;
+  background-color: #f0fafa;
+  text-align: center;
+}
+
+.categories-section h2 {
+  font-size: 2.5rem;
+  color: #1a8d7a;
+  margin-bottom: 30px;
+}
+
+/* Category Cards Grid */
+.category-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Individual Card */
+.category-card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.category-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.category-card p {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Hover effect */
+.category-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.category-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.active-category {
+  border: 2px solid #00bcd4;
+  box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
+}
+
+/* Wrapper for the entire deals section */
+.deals-section {
+  background-color: #f5d3a6; /* soft peach sale vibe */
+  padding: 50px 20px;
+  border-radius: 10px;
+  max-width: 2000px;
+  margin: 40px auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Section heading */
+.deals-heading {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #d32f2f; /* red for SALE feel */
+  margin-bottom: 40px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Flex container for the deal cards */
+.deals-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+/* Each individual deal card */
+.deal-card {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 15px;
+  width: 250px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  text-align: center;
+}
+
+/* On hover, lift the card */
+.deal-card:hover {
+  transform: translateY(-8px);
+}
+
+/* Deal image styling */
+.deal-card img {
+  width: 100%;
+  height: auto;
+  max-height: 180px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+/* Brand text */
+.brand-text {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+/* Discount text */
+.discount {
+  color: #e53935;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Subtext under discount */
+.subtext {
+  color:#009688;
+  font-size: 0.95rem;
+  margin-top: 5px;
+}
+
+
+.site-footer {
+  background-color: #009688;
+  color: #eee;
+  padding: 50px 20px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-column {
+  flex: 1 1 220px;
+}
+
+.footer-column h3,
+.footer-column h4 {
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.footer-column p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+  color: #fff;
+}
+
+.social-icons a {
+  margin-right: 10px;
+}
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s;
+}
+
+.social-icons img:hover {
+  transform: scale(1.2);
+}
+
+.footer-bottom {
+  border-top: 1px solid #aeaeae;
+  text-align: center;
+  padding-top: 20px;
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #d3d2d2;
+}
+
+/* PRODUCTS SECTION CSS */
+
+.products-section {
+  padding: 60px 0;
+  background: #f9f9f9;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.product-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.product-card h3 {
+  font-size: 1.2rem;
+  margin: 15px 0 10px;
+}
+
+.product-card .price {
+  color: #009688;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.add-to-cart {
+   padding: 12px 48px;
+  background-color: #009688;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+  background:#00796b;
+}
+
+
+.cart-section {
+  padding: 60px 0;
+  background: #f4f4f4;
+}
+
+.cart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.cart-section h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+

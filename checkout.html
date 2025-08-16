@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout - Cartify</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f6f9fc;
+      margin: 0;
+      padding: 0;
+    }
+
+    .checkout-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background-color: #fff;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .checkout-form, .order-summary {
+      flex: 1 1 400px;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      font-size: 26px;
+      color: #222;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .order-summary {
+      background-color: #f0f4ff;
+      padding: 20px;
+      border-radius: 12px;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+
+    .checkout-btn {
+      background-color: #008080;
+      color: white;
+      border: none;
+      padding: 14px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .checkout-btn:hover {
+      background-color: #006666;
+    }
+
+    .empty-msg {
+      color: #888;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .order-summary {
+  background-color: #f8fbff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.summary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.summary-item-card {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.summary-item-card img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 15px;
+}
+
+.summary-item-details {
+  flex-grow: 1;
+}
+
+.summary-item-details h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #222;
+}
+
+.summary-item-details span {
+  color: #666;
+  font-size: 14px;
+}
+
+.summary-total-label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.summary-total-amount {
+  font-size: 20px;
+  font-weight: bold;
+  color: #008080;
+}
+
+.total-section {
+  display: flex;
+  justify-content: space-between;
+  border-top: 2px solid #ddd;
+  padding-top: 15px;
+}
+
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">Cartify<span class="dot">.</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="cart.html">Cart</a></li>
+      <li><a href="checkout.html" class="active">Checkout</a></li>
+    </ul>
+  </nav>
+
+  <div class="checkout-container">
+    <div class="checkout-form">
+      <h2>Shipping Details</h2>
+      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="text" id="address" placeholder="Shipping Address" required>
+      <input type="tel" id="phone" placeholder="Phone Number" required>
+      <input type="email" id="email" placeholder="Email Address" required>
+
+      <h2>Payment Method</h2>
+      <select id="payment">
+        <option value="cod">Cash on Delivery</option>
+        <option value="upi">UPI</option>
+        <option value="card">Credit/Debit Card</option>
+      </select>
+
+      <button class="checkout-btn" onclick="confirmOrder()">Confirm Order</button>
+    </div>
+
+    <div class="order-summary">
+     <div class="order-summary">
+  <h2>Order Summary</h2>
+  <div id="summary-items" class="summary-list">
+    <!-- Items injected via JavaScript -->
+  </div>
+  <div class="total-section">
+    <div class="summary-total-label">Total:</div>
+    <div class="summary-total-amount">₹<span id="total-amount">0</span></div>
+  </div>
+</div>
+
+  </div>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const summaryItems = document.getElementById('summary-items');
+    const totalAmount = document.getElementById('total-amount');
+
+    let total = 0;
+
+    if (cart.length === 0) {
+      summaryItems.innerHTML = "<p class='empty-msg'>Your cart is empty.</p>";
+    } else {
+      cart.forEach(item => {
+        const div = document.createElement('div');
+        div.classList.add('summary-item');
+        div.innerHTML = `<span>${item.name}</span><span>${item.price}</span>`;
+        summaryItems.appendChild(div);
+
+        const numericPrice = parseFloat(item.price.replace(/[^\d.]/g, ''));
+        total += numericPrice;
+      });
+      totalAmount.innerText = total.toFixed(2);
+    }
+
+    function confirmOrder() {
+      const name = document.getElementById('name').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const payment = document.getElementById('payment').value;
+
+      if (!name || !address || !phone || !email) {
+        alert("Please fill all shipping details.");
+        return;
+      }
+
+      alert("🎉 Order placed successfully!\nThank you for shopping with Cartify.");
+      localStorage.removeItem('cart');
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
