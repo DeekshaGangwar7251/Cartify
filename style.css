@@ -371,6 +371,70 @@ body {
   color: #d3d2d2;
 }
 
+/* Responsive Design  */
+
+
+@media (max-width: 992px) {
+  .discount-text h2 {
+    font-size: 40px;
+  }
+  .discount-text p {
+    font-size: 20px;
+  }
+  .discount-image {
+    min-width: 300px;
+    text-align: center;
+  }
+  .category-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile (max-width: 600px) */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+    text-align: center;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .discount-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 20px;
+  }
+  .discount-text h2 {
+    font-size: 28px;
+  }
+  .discount-text p {
+    font-size: 16px;
+  }
+  .discount-image {
+    min-width: 100%;
+  }
+  .category-cards {
+    grid-template-columns: 1fr;
+  }
+  .deals-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .deal-card {
+    width: 90%;
+    max-width: 350px;
+  }
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+
 /* PRODUCTS SECTION CSS */
 
 .products-section {
