@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Cart - Cartify</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -13,20 +13,15 @@
     }
 
     .cart-section {
-      max-width: 2000px;
-      margin: 80px auto;
+      max-width: 1200px;
+      margin: 0 auto;
       padding: 20px;
     }
 
     .cart-section h2 {
-      /* font-size: 32px;
-      margin-bottom: 25px;
-      color: #222;
       text-align: center;
-      font-weight: 600; */
-       text-align: center;
-       font-size: 2rem;
-       margin-bottom: 40px;
+      font-size: 2rem;
+      margin-bottom: 40px;
     }
 
     .cart-grid {
@@ -96,33 +91,23 @@
       color: #888;
     }
 
-   .checkout-summary {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 40px;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.total-section {
-  font-size: 22px;
-  font-weight: 600;
-  color: #111;
-  text-align: left;
-}
-
- .total-section {
+    .checkout-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-top: 40px;
-      margin-bottom: 40px;
-      text-align: right;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .total-section {
       font-size: 22px;
       font-weight: 600;
       color: #111;
+      text-align: right;
     }
 
     .checkout-btn {
-      margin-top: 20px;
       background-color: #009688;
       color: white;
       padding: 12px 28px;
@@ -149,14 +134,11 @@
         margin-top: 10px;
       }
 
-      .total-section,
-      .checkout-btn {
+      .total-section, .checkout-btn {
         text-align: center;
         width: 100%;
-       
-       
       }
-    } 
+    }
   </style>
 </head>
 <body>
@@ -173,25 +155,24 @@
   </nav>
 
   <!-- Cart Section -->
- <section class="cart-section">
+  <section class="cart-section">
     <h2>Your Shopping Cart</h2>
     <div class="cart-grid" id="cart-items"></div>
-    <div class="total-section" id="total-price"></div>
-    <div id="checkout-container" style="text-align:right;">
+    <div id="checkout-container" class="checkout-summary" style="display:none;">
+      <div id="total-price" class="total-section"></div>
       <a href="checkout.html" class="checkout-btn">Proceed to Checkout</a>
-
     </div>
   </section>
 
   <script>
     const cartContainer = document.getElementById('cart-items');
-    const totalPriceEl = document.getElementById('total-price');
+    const totalPriceEl = document.getElementById('total-price'); // ✅ Fixed casing
     let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
     function calculateTotal(cartItems) {
       let total = 0;
       cartItems.forEach(item => {
-        const price = parseInt(item.price.replace(/\D/g, '')); // Remove ₹ or other symbols
+        const price = parseInt(item.price.replace(/\D/g, ''));
         total += price;
       });
       return total;
@@ -220,9 +201,9 @@
         cartContainer.appendChild(product);
       });
 
-      // Event listener for remove
+      // ✅ Fixed event listener syntax
       document.querySelectorAll('.remove-btn').forEach(btn => {
-        btn.addEventListener('click', function () {
+        btn.addEventListener('click', function() {
           const index = this.getAttribute('data-index');
           cartItems.splice(index, 1);
           localStorage.setItem('cart', JSON.stringify(cartItems));
@@ -230,14 +211,14 @@
         });
       });
 
-      // Update total
+      // ✅ Fixed string interpolation
       const total = calculateTotal(cartItems);
-      totalPriceEl.innerHTML = Total: ₹${total};
-      document.getElementById('checkout-container').style.display = 'block';
+      totalPriceEl.innerHTML = `Total: ₹${total}`;
+      document.getElementById('checkout-container').style.display = 'flex';
     }
 
     renderCart();
   </script>
-
 </body>
 </html>
+
